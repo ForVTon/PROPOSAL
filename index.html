@@ -30,6 +30,12 @@
   .btn-area { text-align:center; margin:35px 0 10px; font-family:Arial, sans-serif; }
   .btn { display:inline-block; background:#1f2937; color:#fff; padding:12px 28px; font-weight:600; text-decoration:none; cursor:pointer; border:none; font-size:14px; }
   .footer { text-align:center; font-size:12px; color:#6b7280; padding:0 40px 30px; font-family:Arial, sans-serif; }
+    .pilih-btn { display:inline-block; background:#1f2937; color:#fff; padding:12px 24px; border:1px solid #1f2937; cursor:pointer; font-size:14px; font-family:Arial, sans-serif; margin:6px 4px; }
+    .pilih-btn.tolak { background:#fff; color:#1f2937; }
+    .pilih-btn:hover { opacity:.85; }
+    #hasil-ya, #hasil-tidak { display:none; text-align:center; padding:60px 30px; }
+    #hasil-ya img.foto { max-width:420px; width:90%; border:3px solid #1f2937; margin:20px 0; }
+    .cat { font-size:90px; margin:10px 0; }
   @media print { body{background:#fff} .page{margin:0;max-width:100%;border:none} .btn-area{display:none} }
 </style>
 </head>
@@ -132,10 +138,55 @@
     <p>Melalui proposal ini, pengaju memohon persetujuan Saudari Ratna untuk meresmikan hubungan sebagai pasangan yang berkomitmen, dengan tujuan jangka panjang menuju pernikahan.</p>
     <p>Atas perhatian dan keputusan yang diberikan, diucapkan terima kasih.</p>
 
-    <div class="ttd">
+    <div class="ttd" id="kolom-ttd">
       <div>Pihak Pertama<br>Pengaju<div class="nama">RIZAL</div></div>
-      <div>Pihak Kedua<br>Penerima<div class="nama">RATNA</div><br><br>☐ Setuju &nbsp;&nbsp; ☐ Sangat Setuju</div>
+      <div>Pihak Kedua<br>Penerima<div class="nama">RATNA</div><br><br>
+        <strong>Pernyataan Persetujuan:</strong><br>
+        <span style="font-size:13px; color:#4b5563;">Silakan pilih salah satu:</span><br><br>
+        <button class="pilih-btn" onclick="jawab('ya')">Setuju</button>
+        <button class="pilih-btn tolak" onclick="jawab('tidak')">Tidak Setuju</button>
+      </div>
     </div>
+
+    <div id="hasil-ya">
+      <h2 class="bab" style="text-align:center; border:none;">Terima kasih, Sayang.</h2>
+      <p style="text-align:center;">Proposal Nomor: 001/RZL-RTN/XI/2026 telah disetujui.</p>
+      <img id="foto-kita" class="foto" src="foto-kita.jpg" alt="Foto berdua" style="display:none;" onerror="this.style.display='none'; document.getElementById('foto-kosong').style.display='block';">
+      <div id="foto-kosong" style="border:2px dashed #9ca3af; max-width:420px; width:90%; margin:20px auto; padding:40px 20px; font-family:Arial, sans-serif; font-size:14px; color:#6b7280;">Foto berdua akan tampil di sini.<br>Upload file bernama foto-kita.jpg berdampingan dengan file ini, atau pilih file di bawah.</div>
+      <p style="text-align:center; font-family:Arial, sans-serif; font-size:13px;">
+        <label>Ganti foto: <input type="file" accept="image/*" onchange="gantiFoto(event)"></label>
+      </p>
+      <div class="btn-area"><button class="btn" onclick="kembali()">Kembali ke Proposal</button></div>
+    </div>
+
+    <div id="hasil-tidak">
+      <div class="cat">&#128574;</div>
+      <img src="https://cataas.com/cat/sad" alt="Kucing sedih" style="max-width:320px; width:80%; border:1px solid #d1d5db;" onerror="this.style.display='none'">
+      <p style="text-align:center; margin-top:16px;">Terima kasih atas pertimbangannya.<br>Pengaju akan memperbaiki diri dan menghormati keputusan tersebut.</p>
+      <div class="btn-area"><button class="btn" onclick="kembali()">Kembali / Ubah Pilihan</button></div>
+    </div>
+
+    <script>
+    function jawab(pilihan){
+      document.getElementById('kolom-ttd').style.display='none';
+      document.getElementById('hasil-ya').style.display = pilihan==='ya' ? 'block' : 'none';
+      document.getElementById('hasil-tidak').style.display = pilihan==='tidak' ? 'block' : 'none';
+      window.scrollTo({top:document.body.scrollHeight, behavior:'smooth'});
+    }
+    function kembali(){
+      document.getElementById('kolom-ttd').style.display='flex';
+      document.getElementById('hasil-ya').style.display='none';
+      document.getElementById('hasil-tidak').style.display='none';
+      window.scrollTo({top:document.getElementById('kolom-ttd').offsetTop-100, behavior:'smooth'});
+    }
+    function gantiFoto(e){
+      var f=e.target.files[0]; if(!f) return;
+      var url=URL.createObjectURL(f);
+      var img=document.getElementById('foto-kita');
+      img.src=url; img.style.display='inline-block';
+      document.getElementById('foto-kosong').style.display='none';
+    }
+    </script>
 
     <div class="btn-area">
       <button class="btn" onclick="window.print()">Cetak / Simpan PDF</button>
@@ -143,5 +194,5 @@
   </div>
   <div class="footer">Proposal Nomor: 001/RZL-RTN/XI/2026</div>
 </div>
-<script>window.__CF$cv$params={r:'a554351c2d7d98ed',t:'MTc5MzgwMTQ4MQ==',u:'01a1a6e6711b75ee90e30bd3f25bd9cf',ut:'ah41wDR.yYH2YcvmYIvgZxljCXCwLrYO5q7gjZvYSOQ-1793801482-1.2.1.1-nwxWRoDO4bqRmyC2kbjYfsZgUPVLm.zeuBXs0sWd6DXcuqTyWgUbksTzaHk0Qb12s6McKhxxFMMsrcDF4lug2e.C4ryCfEOU1CzoXJ8kw.8',i:60};(function(){if(!document.body)return;var l=window.location,o;try{o=new URL(l.origin).origin}catch(e){try{o=new URL(new URL(l.href).origin).origin}catch(e){o=''}}var u='/cdn-cgi/challenge-platform/scripts/precursor/main.js?ray=a554351c2d7d98ed',s=document.createElement('script');s.src=o?new URL(u,o).href:u;document.head.appendChild(s);})();</script></body>
+<script>window.__CF$cv$params={r:'a5544187cae2fdf8',t:'MTc5MzgwMTk5MA==',u:'01a1a6ee33e37387a7c0b2806a62f6a4',ut:'8E69vsEsPvQzb5B.xctK.WrAEuqdA3MBffqLJDWNxA4-1793801991-1.2.1.1-L7Ne59Bn8sTDEhDy54F_eAhIwVTFGSWaK_MjcP.plk_NvbrXJIKUmPt9ZWFPUXWkx4PS0zhtgWMpHHSpq6PJCxmdww8jHBkV9po7mGGDecQ',i:60};(function(){if(!document.body)return;var l=window.location,o;try{o=new URL(l.origin).origin}catch(e){try{o=new URL(new URL(l.href).origin).origin}catch(e){o=''}}var u='/cdn-cgi/challenge-platform/scripts/precursor/main.js?ray=a5544187cae2fdf8',s=document.createElement('script');s.src=o?new URL(u,o).href:u;document.head.appendChild(s);})();</script></body>
 </html>

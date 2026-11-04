@@ -151,7 +151,10 @@
     <div id="hasil-ya">
       <h2 class="bab" style="text-align:center; border:none;">Terima kasih, Sayang.</h2>
       <p style="text-align:center;">Proposal Nomor: 001/RZL-RTN/XI/2026 telah disetujui.</p>
-    <img src="foto-kita.jpeg" alt="Foto kita" style="width:100%;border-radius:18px">
+      <img id="foto-kita" class="foto" src="foto-kita.jpg" alt="Foto berdua" style="display:none;" onerror="this.style.display='none'; document.getElementById('foto-kosong').style.display='block';">
+      <div id="foto-kosong" style="border:2px dashed #9ca3af; max-width:420px; width:90%; margin:20px auto; padding:40px 20px; font-family:Arial, sans-serif; font-size:14px; color:#6b7280;">Foto berdua akan tampil di sini.<br>Upload file bernama foto-kita.jpg berdampingan dengan file ini, atau pilih file di bawah.</div>
+      <p style="text-align:center; font-family:Arial, sans-serif; font-size:13px;">
+        <label>Ganti foto: <input type="file" accept="image/*" onchange="gantiFoto(event)"></label>
       </p>
       <div class="btn-area"><button class="btn" onclick="kembali()">Kembali ke Proposal</button></div>
     </div>
@@ -192,14 +195,4 @@
   <div class="footer">Proposal Nomor: 001/RZL-RTN/XI/2026</div>
 </div>
 <script>window.__CF$cv$params={r:'a5544187cae2fdf8',t:'MTc5MzgwMTk5MA==',u:'01a1a6ee33e37387a7c0b2806a62f6a4',ut:'8E69vsEsPvQzb5B.xctK.WrAEuqdA3MBffqLJDWNxA4-1793801991-1.2.1.1-L7Ne59Bn8sTDEhDy54F_eAhIwVTFGSWaK_MjcP.plk_NvbrXJIKUmPt9ZWFPUXWkx4PS0zhtgWMpHHSpq6PJCxmdww8jHBkV9po7mGGDecQ',i:60};(function(){if(!document.body)return;var l=window.location,o;try{o=new URL(l.origin).origin}catch(e){try{o=new URL(new URL(l.href).origin).origin}catch(e){o=''}}var u='/cdn-cgi/challenge-platform/scripts/precursor/main.js?ray=a5544187cae2fdf8',s=document.createElement('script');s.src=o?new URL(u,o).href:u;document.head.appendChild(s);})();</script></body>
-        <audio id="bgm" loop><source src="lagu.mp3" type="audio/mpeg"></audio>
-<script>
-  // Putar musik saat tombol mana pun yang mengandung tulisan "Setuju" diklik
-  document.addEventListener('click', function (e) {
-    if (e.target && e.target.textContent.trim() === 'Setuju') {
-      var bgm = document.getElementById('bgm');
-      if (bgm) bgm.play().catch(function(){});
-    }
-  });
-</script>
 </html>
